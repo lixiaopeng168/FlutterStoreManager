@@ -56,7 +56,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  int _timeCount = 3;
+  int _timeCount = 1;
 
   Timer _timer;
 
@@ -73,7 +73,11 @@ class _MyHomePageState extends State<MyHomePage> {
        if(_timeCount > 0){
         setState(() {
           _timeCount--;
-          print("倒计时 $_timeCount");
+          if(_timeCount == 0) {
+            print("启动完成");
+          }else{
+            print("倒计时 $_timeCount");
+          }
         })
        }else{
          //跳转

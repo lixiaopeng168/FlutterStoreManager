@@ -1,6 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'common/IColor.dart';
 import 'model/mainTabListModel.dart';
@@ -55,29 +56,29 @@ class _MyAppState extends State<_MyHomeWidget> {
   List<MainTabListModel> _tabList;
   //左侧栏目
   MainTabWight _mainTabWight;
-
   //展示的下标，默认展示0
   int _selectIndex = 1;
 
+  //距离底部距离
+  double _marginBottom = 30;
+  //地址管理page
+   MainAddressWidget _mainAddressWidget;
+
+   //总高度
+  double _rightHeight;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
 
-
-    _tabList = new List();
-    _tabList.add(MainTabListModel(isSelect: false, text: "用户管理"));
-    _tabList.add(MainTabListModel(isSelect: false, text: "地址管理"));
-    _tabList.add(MainTabListModel(isSelect: false, text: "订单管理"));
-    _tabList.add(MainTabListModel(isSelect: false, text: "商品管理"));
-    _tabList.add(MainTabListModel(isSelect: false, text: "栏目管理"));
-    _tabList.add(MainTabListModel(isSelect: false, text: "系统设置"));
     _initAppbar();
     //初始化leftTab
     _initMainTabWight();
     //初始化list
     _initListView();
+    //地址管理
+    _mainAddressWidget = new MainAddressWidget();
 //    final size =MediaQuery.of(context).size;
   }
   void _initAppbar() {
@@ -87,9 +88,25 @@ class _MyAppState extends State<_MyHomeWidget> {
     );
   }
   void _initMainTabWight(){
+    _tabList = new List();
+    _tabList.add(MainTabListModel(isSelect: false, text: "用户管理"));
+    _tabList.add(MainTabListModel(isSelect: false, text: "地址管理"));
+    _tabList.add(MainTabListModel(isSelect: false, text: "订单管理"));
+    _tabList.add(MainTabListModel(isSelect: false, text: "商品管理"));
+    _tabList.add(MainTabListModel(isSelect: false, text: "栏目管理"));
+    _tabList.add(MainTabListModel(isSelect: false, text: "系统设置"));
+    for(int i=0;i < _tabList.length;i++){
+      _tabList[i].isSelect = false;
+      if(_selectIndex == i) {
+        _tabList[_selectIndex].isSelect = true;
+        break;
+      }
+    }
+
     _mainTabWight = new MainTabWight(
       datas: _tabList,
-      normalColor: Color(0xffefefef),
+      selectIndex: _selectIndex,
+//      normalColor: Color(0xffefefef),
       // ignore: missing_return
       onClick: (index) {
         _onColumnItemClick(index);
@@ -101,8 +118,9 @@ class _MyAppState extends State<_MyHomeWidget> {
 
   @override
   Widget build(BuildContext context) {
-//    var height = MediaQuery.of(context).size.height;
-//    print('hieght: $height');
+    _rightHeight = MediaQuery.of(context).size.height;
+    _mainAddressWidget.marginHeight = _appBar.preferredSize.height*2  + _marginBottom + 20;
+//    print('build Height: $_rightHeight    ${_appBar.preferredSize.height}  ${_mainAddressWidget.marginHeight}');
 //    ScreenUtil.init(context);
 //    var size = MediaQuery.of(context).size;
     return new MaterialApp(
@@ -111,6 +129,7 @@ class _MyAppState extends State<_MyHomeWidget> {
 ////        '/screen2' : (BuildContext context) => new Screen2(),
 ////        '/screen3' : (BuildContext context) => new Screen3(),
 //        },
+
         title: 'xxx管理系统',
         debugShowCheckedModeBanner: true,
         home: new Scaffold(
@@ -119,18 +138,20 @@ class _MyAppState extends State<_MyHomeWidget> {
 //          verticalDirection: ,
 //            verticalDirection: ,
             children: <Widget>[
+              //TODO 左侧列表
               new Expanded(
                 child: _leftTab(),
                 flex: 1,
               ),
-
+              // TODO   右侧内容区域
               new Expanded(
                 child: new Container(
 //                  height: size.height - _appBar.preferredSize.height,
-                  height: 500,
+                  height: _rightHeight - _appBar.preferredSize.height*2 ,
                   alignment: Alignment.topLeft,
+                  /// TODO 列表绘制
                   child: _rightListView(_selectIndex), //EE6A50
-                  margin: new EdgeInsets.only(left: 100,top: 50,right: 50,bottom: 0),
+                  margin: new EdgeInsets.only(left: 30,top: 20,right: 30,bottom: _marginBottom),
                   padding: new EdgeInsets.all(10),
 //                  color: new Color(0xffEE6A50),
                   decoration: new BoxDecoration(
@@ -170,7 +191,7 @@ class _MyAppState extends State<_MyHomeWidget> {
       height: 200,
 //        width: ,
       alignment: Alignment.center,
-      color: IColor.gray,
+      color: IColor.white,
       child: new Text(
         "lxp",
         style: new TextStyle(color: Colors.lightBlue, fontSize: 15),
@@ -182,8 +203,9 @@ class _MyAppState extends State<_MyHomeWidget> {
   Widget _leftColumn() {
     return new Container(
         child: _mainTabWight,
-
-        color: IColor.white);
+        color: IColor.white,
+        margin: new EdgeInsets.only(bottom: _marginBottom),
+    );
   }
 
 // 左侧 栏目 item点击回调
@@ -199,7 +221,7 @@ class _MyAppState extends State<_MyHomeWidget> {
   ListView _listView;
   // 右侧listview页面管理
   Widget _rightListView(int index) {
-    print("_rightListView execute ");
+//    print("_rightListView execute :${ScreenUtil.screenWidth} \t ${ScreenUtil.screenHeight}  \t ${_appBar.preferredSize.height}");
     return    new ListView(
       shrinkWrap: true,
       children: <Widget>[
@@ -239,7 +261,7 @@ class _MyAppState extends State<_MyHomeWidget> {
   }
 //地址
   Widget _rightManagerAddress(){
-    return new MainAddressWidget();
+    return _mainAddressWidget;
   }
 //订单
   Widget _rightManagerOrder(){

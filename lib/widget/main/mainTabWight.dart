@@ -13,21 +13,6 @@ import 'package:storyManager/model/mainTabListModel.dart';
 typedef onItemClick = Future Function(int index);
 
 class MainTabWight extends StatefulWidget {
-  MainTabWight({Key key,
-    this.datas,
-    this.lineColor = Colors.white70,
-    this.lineHeight = 1.0,
-    this.normalColor = Colors.white,
-    this.selectColor = Colors.white70,
-    this.normalTextColor = Colors.black,
-    this.selectTextColor = Colors.blue,
-    this.fontSize = 16,
-    this.paddingBottom = 20,
-    this.paddingTop = 20,
-    this.selectIndex = 0,
-    this.onClick
-  })
-      : super(key: key);
 
   //数据
   final List<MainTabListModel> datas;
@@ -61,15 +46,32 @@ class MainTabWight extends StatefulWidget {
   final onItemClick onClick;
 
   //设置默认选中值
-   int selectIndex;
+  int selectIndex;
   _MyTabWightState _mainState;
+
+  MainTabWight({Key key,
+    this.datas,
+    this.lineColor = Colors.white70,
+    this.lineHeight = 1.0,
+    this.selectColor = Colors.amber,
+    this.normalColor = Colors.white,
+    this.normalTextColor = Colors.black,
+    this.selectTextColor = Colors.blue,
+    this.fontSize = 16,
+    this.paddingBottom = 20,
+    this.paddingTop = 20,
+    this.selectIndex = 0,
+    this.onClick
+  })
+      : super(key: key);
+
+
   /**
    * 左侧 tab 是由list  点击的时候 让item变色
    */
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-    print("初始化Lefttab");
     return _mainState = new _MyTabWightState();
   }
 
@@ -96,6 +98,7 @@ class _MyTabWightState extends State<MainTabWight> {
    */
   Widget _createListView() {
     return new ListView.separated(
+
       itemBuilder: (BuildContext context, int index) {
         return _createText(index);
       },
@@ -114,6 +117,7 @@ class _MyTabWightState extends State<MainTabWight> {
     return new MaterialButton(
       child: _itemText(item),
       color: item.isSelect ? widget.selectColor : widget.normalColor,
+//      color:  widget.selectColor,
 //      alignment: Alignment.center,
       padding: new EdgeInsets.only(
           left: 0.0,
@@ -156,7 +160,6 @@ class _MyTabWightState extends State<MainTabWight> {
    * 更新item
    */
   void _updateItem(int index){
-    print("tabItem :-> ${widget.selectIndex}\tindex:$index");
     setState(() {
       widget.datas.elementAt(widget.selectIndex).isSelect = false;
       widget.datas.elementAt(index).isSelect = true;
