@@ -6,8 +6,10 @@
 4. 动画效果去我的另一个Demo里[点我跳转](https://github.com/lixiaopeng168/FlutterTest)
 
 ### 效果图
-![倒计时](https://github.com/lixiaopeng168/FlutterStoreManager/blob/master/screen/1.jpg)
-[列表切换1](https://github.com/lixiaopeng168/FlutterStoreManager/blob/master/screen/1.jpg)
-[列表切换2]: https://github.com/lixiaopeng168/FlutterStoreManager/blob/master/screen/1.jpg
+<figure class="third">
+    <img src="https://github.com/lixiaopeng168/FlutterStoreManager/blob/master/screen/1.jpg">
+    <img src="https://github.com/lixiaopeng168/FlutterStoreManager/blob/master/screen/2.jpg">
+    <img src="https://github.com/lixiaopeng168/FlutterStoreManager/blob/master/screen/3.jpg">
+</figure>
 
 
