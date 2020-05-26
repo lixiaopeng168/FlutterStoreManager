@@ -1,16 +1,13 @@
-# storyManager
+# 本项目是Flutter学习开发的一款Demo
+### 目前实现
+1. 倒计时功能
+2. tab列表切换功能
+3. 屏幕适配细节
+4. 动画效果去我的另一个Demo里[点我跳转](https://github.com/lixiaopeng168/FlutterTest)
 
-A new Flutter project.
+### 效果图
+![倒计时](https://github.com/lixiaopeng168/FlutterStoreManager/blob/master/screen/1.jpg)
+![列表切换1](https://github.com/lixiaopeng168/FlutterStoreManager/blob/master/screen/1.jpg)
+![列表切换2](https://github.com/lixiaopeng168/FlutterStoreManager/blob/master/screen/1.jpg)
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
