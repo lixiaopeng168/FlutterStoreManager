@@ -7,7 +7,7 @@
 
 ### 效果图
 ![倒计时](https://github.com/lixiaopeng168/FlutterStoreManager/blob/master/screen/1.jpg)
-![列表切换1](https://github.com/lixiaopeng168/FlutterStoreManager/blob/master/screen/1.jpg)
-![列表切换2](https://github.com/lixiaopeng168/FlutterStoreManager/blob/master/screen/1.jpg)
+[列表切换1](https://github.com/lixiaopeng168/FlutterStoreManager/blob/master/screen/1.jpg)
+[列表切换2]: https://github.com/lixiaopeng168/FlutterStoreManager/blob/master/screen/1.jpg
 
 
