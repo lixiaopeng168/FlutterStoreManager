@@ -192,17 +192,74 @@ class _MainAddressState extends State<MainAddressWidget> {
     );
   }
 
-  /// 中部区域边框
+  /// 中部区域边框 和内容
   Widget _contentRect() {
     return new Container(
         height: _contentHeight,
         width: _contentWidth,
+        child: _contentGrid(),
         margin: new  EdgeInsets.only(
           top: ScreenUtil().setWidth(10),
           right: ScreenUtil().setWidth(15)
         ),
         decoration: new BoxDecoration(
 //      color: IColor.gray,
-            border: new Border.all(color: Color(IColor.i_blue_87), width: 1)));
+      border: new Border.all(color: Color(IColor.i_blue_87), width: 1))
+
+    );
   }
+
+  /// 中部区域内容
+  Widget _contentGrid(){
+//    return new Text("Table");
+    return new Table(
+      //所有列宽
+//        columnWidths: const {
+//          //列宽
+//          0: FixedColumnWidth(100.0),
+//          1: FixedColumnWidth(200.0),
+//          2: FixedColumnWidth(50.0),
+//        },
+
+      //表格边框样式
+      border: new TableBorder.all(
+        color: Colors.blue,
+        width: 1.0,
+        style: BorderStyle.solid,
+      ),
+      children: _tabList(),
+    );
+  }
+
+/// 表格 列表
+  List<TableRow> _tabList(){
+    List<TableRow> list = new List();
+    for(int i=0;i < 10;i++) {
+      list.add(new TableRow(
+        //第一行样式 添加背景色
+          decoration: BoxDecoration(
+            color: i % 2 == 0 ? Colors.white : IColor.gray,
+          ),
+          children: [
+            //设置行高
+            new SizedBox(
+              height: 50,
+              child: new Center(
+                child: Text("first"),
+              ) ,
+            ),
+            new Center(
+              child:  Text("second"),
+            ),
+            new Center(
+              child:Text("third") ,
+            )
+            ,
+          ]
+      ));
+    }
+    return  list;
+  }
+
+
 }
