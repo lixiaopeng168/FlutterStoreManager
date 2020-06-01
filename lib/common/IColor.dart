@@ -6,6 +6,7 @@ class IColor{
    static const int i_blue_87 = 0xff87CEFA;
 
   static Color   line = new Color(0xffF8F8FF);
+  static Color   line_blue = new Color(i_blue_87);
 
   static Color  white = new Color(0xffffffff);
 

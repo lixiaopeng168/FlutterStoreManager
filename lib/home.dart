@@ -2,6 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:storyManager/widget/main/mainUserWight.dart';
 
 import 'common/IColor.dart';
 import 'model/mainTabListModel.dart';
@@ -57,12 +58,14 @@ class _MyAppState extends State<_MyHomeWidget> {
   //左侧栏目
   MainTabWight _mainTabWight;
   //展示的下标，默认展示0
-  int _selectIndex = 1;
+  int _selectIndex = 0;
 
   //距离底部距离
   double _marginBottom = 30;
   //地址管理page
    MainAddressWidget _mainAddressWidget;
+   // 用户管理page
+   MainUserWight _mainUserWight;
 
    //总高度
   double _rightHeight;
@@ -79,6 +82,8 @@ class _MyAppState extends State<_MyHomeWidget> {
     _initListView();
     //地址管理
     _mainAddressWidget = new MainAddressWidget();
+    //用户管理
+    _mainUserWight = new MainUserWight();
 //    final size =MediaQuery.of(context).size;
   }
   void _initAppbar() {
@@ -257,7 +262,7 @@ class _MyAppState extends State<_MyHomeWidget> {
 
 //用户
   Widget _rightManagerUser(){
-    return new Text("用户管理");
+    return _mainUserWight;
   }
 //地址
   Widget _rightManagerAddress(){
